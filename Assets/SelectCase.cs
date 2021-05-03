@@ -9,6 +9,12 @@ public class SelectCase : MonoBehaviour
 
     public Transform tileColored;
 
+    public Material color;
+
+    public Transform rook;
+
+    public Transform tilePiece;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,15 +35,19 @@ public class SelectCase : MonoBehaviour
         {
             if (transform.GetComponentsInChildren<Transform>().ToList().Contains(hit.transform))
             {
-                print("Touche une tuile");
-                if (hit.transform == tileColored) return;
+                if (hit.transform == tileColored)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Instantiate(rook, new Vector3(hit.transform.position.x, hit.transform.position.y, hit.transform.position.z), Quaternion.identity, tilePiece);
+                    }
+                    else return;
+                }
                 else
                 {
-                    print("Touche une nouvelle tuile");
                     if (tileColored != null)
                     {
-                        print("On 2teint l'qnciewnne tuile");
-                        tileColored.GetComponent<Renderer>().material.color = new Color(171, 171 , 171, 255);
+                        tileColored.GetComponent<Renderer>().material = color;
                     }
 
                     hit.transform.GetComponent<Renderer>().material.color = Color.black;

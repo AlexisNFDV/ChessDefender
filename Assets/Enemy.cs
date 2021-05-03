@@ -19,9 +19,7 @@ public class Enemy : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        print("trigger");
         if (other.gameObject.tag == "base") {
-            print("Dans la base");
             Instantiate(deathParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             Destroy(gameObject);
         }
