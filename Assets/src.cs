@@ -6,12 +6,13 @@ public class src : MonoBehaviour
 {
     public GameObject enemy;
     public Transform target;
-    void Start() {        
-        var i = 0;
+    void Start() {
+        /*var i = 0;
         while (i < 5) {
             StartCoroutine(EnemyCoroutine());    
             i++;
-        }
+        }*/
+        StartCoroutine(EnemyCoroutine());
     }
     public void createEnemy() {
         Enemy enemyInsta = Instantiate(enemy, gameObject.transform.position, gameObject.transform.rotation).GetComponent<Enemy>();
