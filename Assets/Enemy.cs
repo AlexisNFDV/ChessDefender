@@ -8,21 +8,39 @@ public class Enemy : MonoBehaviour {
     [Header("Unity Setup")]
     public ParticleSystem deathParticles;
     public Image healthbar;
+    public float startHealth = 100f;
     public NavMeshAgent agent;
     public Transform target;
+    private float health;
     
-
+    void Start() {
+        health = startHealth;
+    }
 
     void Update() {
         agent.SetDestination(target.position);
         //healthbar.transform.LookAt(Camera.main.transform.position);
+
+        if (health <= 0) {
+            Die();
+        }
     }
 
     private void OnTriggerEnter(Collider other) {
+
         if (other.gameObject.tag == "base") {
-            Instantiate(deathParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-            Destroy(gameObject);
+            health = 0;
         }
+
+        if (other.gameObject.tag == "bullet") {
+            health -= 15;
+            healthbar.fillAmount = health / startHealth;
+        }
+    }
+
+    private void Die() {
+        Destroy(gameObject);
+        Instantiate(deathParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
     }
 
 }
