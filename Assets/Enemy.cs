@@ -12,7 +12,9 @@ public class Enemy : MonoBehaviour {
     public NavMeshAgent agent;
     public Transform target;
     private float health;
-    
+    public GameObject coinsText;
+
+
     void Start() {
         health = startHealth;
     }
@@ -40,6 +42,8 @@ public class Enemy : MonoBehaviour {
 
     private void Die() {
         Destroy(gameObject);
+        //Faire gagner une pièce
+        GameManager.Instance.shop.addCoin(1);
         Instantiate(deathParticles, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
     }
 

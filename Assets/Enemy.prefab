@@ -204,6 +204,7 @@ MonoBehaviour:
   startHealth: 100
   agent: {fileID: 8073661755674980035}
   target: {fileID: 1471091689063706835, guid: 073045e1692e4154cadb2696317a0268, type: 3}
+  coinsText: {fileID: 4879206223247664245, guid: 39300279df91a1249a0ff6ec10391600, type: 3}
 --- !u!195 &8073661755674980035
 NavMeshAgent:
   m_ObjectHideFlags: 0

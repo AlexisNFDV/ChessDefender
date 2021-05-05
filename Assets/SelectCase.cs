@@ -15,6 +15,8 @@ public class SelectCase : MonoBehaviour
 
     public Transform tilePiece;
 
+    public GameObject coinsText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,8 @@ public class SelectCase : MonoBehaviour
                     if (Input.GetMouseButtonDown(0))
                     {
                         Instantiate(rook, new Vector3(hit.transform.position.x, hit.transform.position.y, hit.transform.position.z), Quaternion.identity, tilePiece);
+                        //Faire perdre une pièce
+                        GameManager.Instance.shop.addCoin(-1);
                     }
                     else return;
                 }
